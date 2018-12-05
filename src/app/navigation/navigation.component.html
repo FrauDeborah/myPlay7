@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" href="/home">Home</a>
+      <a mat-list-item routerLink="/address-form" href="/address-form">Sample Address Form</a>
+      <a mat-list-item routerLink="/dashboard" href="/dashboard">Sample Dashboard</a>
+      <a mat-list-item routerLink="/drag-drop" href="/drag-drop">Sample Drag Drop</a>
+      <a mat-list-item routerLink="/table" href="/table">Sample Table</a>
+      <a mat-list-item routerLink="/tree" href="/tree">Sample Tree</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!--span>myPlay7</span-->
+      <span>
+        <a  aria-label="myPlay7" class="docs-button mat-button" mat-button="" routerLink="/home" tabindex="0" aria-disabled="false" href="/home">
+          <span >
+            <img class="header-icon" alt="myPlay7" >
+          </span>
+          <div class="mat-button-ripple mat-ripple" matripple=""> </div>
+        </a>
+      </span>
+
+      <span id="spanPageTitle" [innerHTML]="pageTitle"></span>
+
+      <span class="header-fill-remaining-space"> </span>
+      <!--span >
+        <a class="docs-button mat-button" routerLink="/dialog101/login" aria-label="login">login</a>
+        <span> | </span>
+        <a class="docs-button mat-button" routerLink="/registration" aria-label="register">register</a>
+      </span-->
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
