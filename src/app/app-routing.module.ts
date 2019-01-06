@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TableComponent } from './table/table.component';
 import { TreeComponent } from './tree/tree.component';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: {pageTitle: 'Home'} },
   { path: 'address-form', component: AddressFormComponent, data: {pageTitle: 'Sample Address Form'} },
   { path: 'dashboard', component: DashboardComponent, data: {pageTitle: 'Sample Dashboard'} },
