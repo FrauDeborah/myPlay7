@@ -1,12 +1,39 @@
 import { TestBed, async } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+          MatSidenavModule,
+          MatToolbarModule,
+          MatListModule,
+          MatIconModule
+        } from '@angular/material';
+
 import { AppComponent } from './app.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationService } from './_services/navigation.service';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
+      imports: [
+        RouterTestingModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        MatIconModule,
+        BrowserAnimationsModule
       ],
+      declarations: [
+        AppComponent, NavigationComponent
+      ],
+      providers: [{
+          provide: NavigationService,
+          useValue: {
+            setPageTitle: jasmine.createSpy('setPageTitle')
+          }
+        }
+      ]
     }).compileComponents();
   }));
 
@@ -20,12 +47,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('myPlay7');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to myPlay7!');
   });
 });
