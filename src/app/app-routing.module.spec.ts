@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Location } from '@angular/common';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { MatButtonModule,
@@ -109,55 +109,89 @@ describe('AppRoutingModule', () => {
     router = TestBed.get(Router);
     location = TestBed.get(Location);
     fixture = TestBed.createComponent(AppComponent);
-    router.initialNavigation();
+    fixture.ngZone.run(() => {
+      router.initialNavigation();
+    });
   });
 
-  it('#app-routing navigate to "" redirects to /home', fakeAsync(() => {
-    router.navigate(['']);
-    tick();
-    expect(location.path()).toBe('/home');
+  it('#app-routing navigate to "" redirects to /home', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/home');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "home" takes you to /home', fakeAsync(() => {
-    router.navigate(['/home']);
-    tick();
-    expect(location.path()).toBe('/home');
+  it('#app-routing navigate to "home" redirects to /home', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/home']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/home');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "address-form" takes you to /address-form', fakeAsync(() => {
-    router.navigate(['/address-form']);
-    tick();
-    expect(location.path()).toBe('/address-form');
+  it('#app-routing navigate to "address-form" redirects to /address-form', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/address-form']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/address-form');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "dashboard" takes you to /dashboard', fakeAsync(() => {
-    router.navigate(['/dashboard']);
-    tick();
-    expect(location.path()).toBe('/dashboard');
+  it('#app-routing navigate to "dashboard" redirects to /dashboard', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/dashboard']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/dashboard');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "drag-drop" takes you to /drag-drop', fakeAsync(() => {
-    router.navigate(['/drag-drop']);
-    tick();
-    expect(location.path()).toBe('/drag-drop');
+  it('#app-routing navigate to "drag-drop" redirects to /drag-drop', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/drag-drop']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/drag-drop');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "table" takes you to /table', fakeAsync(() => {
-    router.navigate(['/table']);
-    tick();
-    expect(location.path()).toBe('/table');
+  it('#app-routing navigate to "table" redirects to /table', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/table']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/table');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "tree" takes you to /tree', fakeAsync(() => {
-    router.navigate(['/tree']);
-    tick();
-    expect(location.path()).toBe('/tree');
+  it('#app-routing navigate to "tree" redirects to /tree', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/tree']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/tree');
+          });
+      });
   }));
 
-  it('#app-routing navigate to "**" takes you to /page-not-found', fakeAsync(() => {
-    router.navigate(['/page-not-found']);
-    tick();
-    expect(location.path()).toBe('/page-not-found');
+  it('#app-routing navigate to "**" redirects to /page-not-found', async(() => {
+      fixture.ngZone.run(() => {
+          router.navigate(['/page-not-found']);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(location.path()).toBe('/page-not-found');
+          });
+      });
   }));
 
   it('#app-routing should create an instance', () => {
